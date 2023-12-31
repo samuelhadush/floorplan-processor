@@ -1,9 +1,22 @@
 import cv2
-import csv
+
 import numpy as np
+import matplotlib.pyplot as plt
+plt.show()
+import tensorflow as tf
+from tensorflow.keras import layers
 import keras
 
+import imutils
+import csv
 
+
+def detect_digit():
+    (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+    x_train =x_train/255
+    x_test =x_test/255
+    plt.imshow(x_train[0],cmap='Greys')
+    plt.show()
 def  saveToCSV(data):
     print(data)
 def file_read():
@@ -32,6 +45,7 @@ def detect_corners(img):
     cv2.imshow('corners', img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
 def remove_noise(img):
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (8, 8))
     # morph = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
@@ -115,9 +129,8 @@ def main():
 
 # The Program first starts executing from Here
 if __name__ == "__main__":
-    angl=[0, 90, 180, 270]
-    # ROI_list = [[0, 500, 5500, 6200], [5500, 6150, 0, 420], [11300, 11750, 5500, 6200], [5530, 6215, 11250, 11750]]
-    # main(ROI_list, angl)
-    main()
+    print(imutils.__version__)
+    # main()
+    detect_digit()
     # input("Press Enter To Exit...")
 
